@@ -9,6 +9,6 @@
 ### Konrad Heyen:
     - 
 
-## The percentage of work performed by each teammate
+## The Percentage of Work
 ### Derrick Courtney: 50%
 ### Konrad Heyen: 50%
