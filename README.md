@@ -4,8 +4,10 @@
 
 
 ## Contribution
-### Derrick Courtney:
+### Derrick Courtney
+    - 
 ### Konrad Heyen:
+    - 
 
 ## The percentage of work performed by each teammate
 ### Derrick Courtney: 50%
