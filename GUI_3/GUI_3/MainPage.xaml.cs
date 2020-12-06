@@ -29,14 +29,15 @@ namespace GUI_3
         public QuizViewModel Quiz { get; set; }
         public MainPage()
         {
-            this.InitializeComponent();
-           // Question = new QuestionViewModel(new Question("test"));
+            this.InitializeComponent(); 
+            Question = new QuestionViewModel(new Question(" "," "," "," "," ",0));
             Quiz = new QuizViewModel(new Quiz("Test"));
         }
 
         private void addQuizButton_Click(object sender, RoutedEventArgs e)
         {
-            Quiz.Questions.Add(new QuestionViewModel(new Question(this.textQuestionBox.Text)));
+            //NEED to add for changing the answers
+            Quiz.Questions.Add(new QuestionViewModel(new Question(Question.Text, "something", "something2", "something3", "something4", 0)));
         }
 
         private void QuestionListView_Tapped(object sender, TappedRoutedEventArgs e)

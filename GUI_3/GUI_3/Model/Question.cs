@@ -8,17 +8,19 @@ namespace GUI_3.Model
 {
     public class Question
     {
+        
         public string Text { get; set; }
         public List<Answer> Answers { get; set; }
-        public Question(String text)
+        public Question(string text, string answer1, string answer2, string answer3, string answer4, int whichIsCorrect)
         {
             this.Text = text;
             Answers = new List<Answer> {
-                new Answer("A", false),
-                new Answer("B", false),
-                new Answer("C", true),
-                new Answer("D", false)
+                new Answer(answer1),
+                new Answer(answer2),
+                new Answer(answer3),
+                new Answer(answer4)
             };
+            Answers[(int)whichIsCorrect].isCorrect = true;
         }
 
     }
