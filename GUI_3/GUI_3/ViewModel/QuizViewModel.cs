@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace GUI_3.ViewModel
 {
-    class QuizViewModel : INotifyPropertyChanged
+    public class QuizViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

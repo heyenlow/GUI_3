@@ -1,5 +1,8 @@
-﻿using System;
+﻿using GUI_3.Model;
+using GUI_3.ViewModel;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,9 +25,24 @@ namespace GUI_3
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public QuestionViewModel Question { get; set; }
+        public QuizViewModel Quiz { get; set; }
         public MainPage()
         {
             this.InitializeComponent();
+           // Question = new QuestionViewModel(new Question("test"));
+            Quiz = new QuizViewModel(new Quiz("Test"));
+        }
+
+        private void addQuizButton_Click(object sender, RoutedEventArgs e)
+        {
+            Quiz.Questions.Add(new QuestionViewModel(new Question(this.textQuestionBox.Text)));
+        }
+
+        private void QuestionListView_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+           Debug.WriteLine(Quiz.Questions[this.QuestionListView.SelectedIndex].Answers[0].Text);
+            this.AnswersListView.ItemsSource = Quiz.Questions[this.QuestionListView.SelectedIndex].Answers;
         }
     }
 }

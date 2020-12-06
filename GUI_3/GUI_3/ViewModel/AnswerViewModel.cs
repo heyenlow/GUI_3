@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace GUI_3.ViewModel
 {
-    class AnswerViewModel : INotifyPropertyChanged
+    public class AnswerViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
         private Answer answer;
 
-        public AnswerViewModel(Answer question)
+        public AnswerViewModel(Answer answer)
         {
-            this.answer = question;
+            this.answer = answer;
         }
 
         public String Text

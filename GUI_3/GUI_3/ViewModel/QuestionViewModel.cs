@@ -9,24 +9,22 @@ using System.Threading.Tasks;
 
 namespace GUI_3.ViewModel
 {
-    class QuestionViewModel : INotifyPropertyChanged
+    public class QuestionViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-
         private Question question;
-        public ObservableCollection<AnswerViewModel> AnswersL { get; set; }
+        public ObservableCollection<AnswerViewModel> Answers { get; set; }
         public QuestionViewModel(Question question)
         {
             this.question = question;
 
-            AnswersL = new ObservableCollection<AnswerViewModel>();
-
+            Answers = new ObservableCollection<AnswerViewModel>();
 
             foreach (var answer in question.Answers)
             {
                 var newA = new AnswerViewModel(answer);
                 newA.PropertyChanged += OnPropertyChanged;
-                AnswersL.Add(newA);
+                Answers.Add(newA);
             }
         }
 
@@ -37,16 +35,6 @@ namespace GUI_3.ViewModel
             {
                 question.Text = value;
                 OnPropertyChanged("Text");
-            }
-        }
-
-        public List<Answer> Answers
-        {
-            get { return question.Answers; }
-            set
-            {
-                question.Answers = value;
-                OnPropertyChanged("Answers");
             }
         }
 

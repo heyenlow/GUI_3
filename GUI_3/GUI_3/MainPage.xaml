@@ -2,13 +2,34 @@
     x:Class="GUI_3.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:GUI_3"
+    xmlns:local="using:GUI_3.ViewModel"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <StackPanel>
+        <TextBox x:Name="textQuestionBox" Text="{x:Bind Question.Text, Mode=TwoWay}" />
+        <Button x:Name="addQuizButton" Content="Add Question" Click="addQuizButton_Click" />
+        <ListView x:Name="QuestionListView" Height="155" Width="216" HorizontalAlignment="Left"
+                          ItemsSource="{x:Bind Quiz.Questions, Mode=OneWay}" Tapped="QuestionListView_Tapped">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:QuestionViewModel">
+                    <StackPanel>
+                        <TextBlock Text="{x:Bind Text, Mode=OneWay}" FontWeight="Bold"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ListView x:Name="AnswersListView" Height="155" Width="216" HorizontalAlignment="Left">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:AnswerViewModel">
+                    <StackPanel>
+                        <TextBlock Text="{x:Bind Text, Mode=OneWay}" FontWeight="Bold"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </StackPanel>
 
 </Page>

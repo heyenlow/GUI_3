@@ -6,9 +6,14 @@ using System.Threading.Tasks;
 
 namespace GUI_3.Model
 {
-    class Answer
+    public class Answer
     {
         public string Text { get; set; }
         public bool isCorrect { get; set; }
+        public Answer(string Text, bool isCorrect)
+        {
+            this.Text = Text;
+            this.isCorrect = isCorrect;
+        }
     }
 }
