@@ -28,7 +28,7 @@ namespace GUI_3.ViewModel
             }
         }
 
-        public String Text
+        public string Text
         {
             get { return question.Text; }
             set

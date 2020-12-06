@@ -8,28 +8,81 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <StackPanel>
-        <TextBox x:Name="textQuestionBox" Text="{x:Bind Question.Text, Mode=TwoWay}" />
-        <Button x:Name="addQuizButton" Content="Add Question" Click="addQuizButton_Click" />
-        <ListView x:Name="QuestionListView" Height="155" Width="216" HorizontalAlignment="Left"
-                          ItemsSource="{x:Bind Quiz.Questions, Mode=OneWay}" Tapped="QuestionListView_Tapped">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="local:QuestionViewModel">
-                    <StackPanel>
-                        <TextBlock Text="{x:Bind Text, Mode=OneWay}" FontWeight="Bold"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <ListView x:Name="AnswersListView" Height="155" Width="216" HorizontalAlignment="Left">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="local:AnswerViewModel">
-                    <StackPanel>
-                        <TextBlock Text="{x:Bind Text, Mode=OneWay}" FontWeight="Bold"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+    <RelativePanel>
+    <StackPanel x:Name="QuestionStackPanel" Margin="30">
+        <StackPanel BorderBrush="CornflowerBlue" BorderThickness="5" Width="600" Margin="10" HorizontalAlignment="Left">
+            <TextBlock Text="Add Question" FontSize="50" HorizontalAlignment="Center"/>
+            <RelativePanel Margin="10">
+                <TextBlock x:Name="Q" Margin="0,5,10,0">Question:</TextBlock>
+                <TextBox x:Name="textQuestionBox" RelativePanel.RightOf="Q" Text="{x:Bind Question.Text, Mode=TwoWay}" Width="460" />
+            </RelativePanel>
+            <RelativePanel HorizontalAlignment="Left" Width="750" Margin="10">
+                <RadioButton x:Name="A1" Tag="1" GroupName="SelectedAnswer" Checked="A1_Checked">
+                    <TextBox x:Name="textAnswer1" RelativePanel.RightOf="A1"  Text="{x:Bind Answer1.Text, Mode=TwoWay}" Width="500" />
+                </RadioButton>
+            </RelativePanel>
+            <RelativePanel HorizontalAlignment="Left" Width="750" Margin="10">
+                <RadioButton x:Name="A2" Tag="2" GroupName="SelectedAnswer" Checked="A1_Checked">
+                    <TextBox x:Name="textAnswer2" RelativePanel.RightOf="A2"  Text="{x:Bind Answer2.Text, Mode=TwoWay}" Width="500" />
+                </RadioButton>
+            </RelativePanel>
+            <RelativePanel HorizontalAlignment="Left" Width="750" Margin="10">
+                <RadioButton x:Name="A3" Tag="3" GroupName="SelectedAnswer" Checked="A1_Checked">
+                    <TextBox x:Name="textAnswer3" RelativePanel.RightOf="A3"  Text="{x:Bind Answer3.Text, Mode=TwoWay}" Width="500" />
+                </RadioButton>
+            </RelativePanel>
+            <RelativePanel HorizontalAlignment="Left" Width="750" Margin="10">
+                <RadioButton x:Name="A4" Tag="4" GroupName="SelectedAnswer" Checked="A1_Checked">
+                    <TextBox x:Name="textAnswer4" RelativePanel.RightOf="A4"  Text="{x:Bind Answer4.Text, Mode=TwoWay}" Width="500" />
+                </RadioButton>
+            </RelativePanel>
+            <Button x:Name="addQuizButton" HorizontalAlignment="Right" Content="Add Question" Click="addQuizButton_Click" Margin="10"/>
+        </StackPanel>
+
+        <RelativePanel BorderBrush="Tomato" BorderThickness="5" Width="600" Margin="10" HorizontalAlignment="Left">
+            <TextBlock x:Name="QuestionBankText" Text="Question Bank" FontSize="50" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="QuestionText" RelativePanel.Below="QuestionBankText" Text="Questions" Margin="10,5,0,0"/>
+            <ListView x:Name="QuestionListView" Height="155" RelativePanel.Below="QuestionText" BorderBrush="Black" Margin="10" BorderThickness="1"  Width="216" HorizontalAlignment="Left"
+                              ItemsSource="{x:Bind QuestionBank.Questions, Mode=OneWay}" Tapped="QuestionListView_Tapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:QuestionViewModel">
+                        <StackPanel>
+                            <TextBlock Text="{x:Bind Text, Mode=OneWay}" FontWeight="Bold"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <TextBlock x:Name="AnswersText" RelativePanel.Below="QuestionBankText" RelativePanel.RightOf="QuestionListView" Text="Answers" Margin="10,5,0,0"/>
+            <ListView x:Name="AnswersListView" RelativePanel.AlignLeftWith="AnswersText" RelativePanel.Below="AnswersText" RelativePanel.RightOf="QuestionListView"  BorderBrush="Black" BorderThickness="1" Margin="10" Height="155" Width="216" HorizontalAlignment="Left">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:AnswerViewModel">
+                        <StackPanel>
+                            <TextBlock Text="{x:Bind Text, Mode=OneWay}" FontWeight="Bold"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <TextBlock x:Name="ShowAnswer" Text="" FontSize="70" RelativePanel.RightOf="AnswersListView" VerticalAlignment="Center" Padding="10,50,0,0"/>
+            <Button x:Name="addToQuizButton" RelativePanel.Below="AnswersListView" RelativePanel.AlignRightWithPanel="True"  Content="Add To Quiz" Click="addToQuizButton_Click"  Margin="10"/>
+        </RelativePanel>
     </StackPanel>
+    <StackPanel x:Name="QuizStackPanel" Margin="30" RelativePanel.RightOf="QuestionStackPanel">
+        <RelativePanel BorderBrush="MediumSeaGreen" BorderThickness="5" Width="300" Margin="10" HorizontalAlignment="Left">
+            <TextBlock x:Name="QuizText" Text="Quiz" FontSize="50" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="QuestionText2" RelativePanel.Below="QuizText" Text="Questions" Margin="10,5,0,0"/>
+            <ListView x:Name="QuestionListView2" Height="155" RelativePanel.Below="QuestionText2" BorderBrush="Black" Margin="10" BorderThickness="1"  Width="216" HorizontalAlignment="Left"
+                              ItemsSource="{x:Bind Quiz.Questions, Mode=OneWay}" Tapped="QuestionListView_Tapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:QuestionViewModel">
+                        <StackPanel>
+                            <TextBlock Text="{x:Bind Text, Mode=OneWay}" FontWeight="Bold"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button x:Name="takeQuizButton" RelativePanel.Below="QuestionListView2" RelativePanel.AlignRightWithPanel="True"  Content="Take Quiz" Click="takeQuizButton_Click"  Margin="10"/>
+        </RelativePanel>
+    </StackPanel>
+    </RelativePanel>
 
 </Page>

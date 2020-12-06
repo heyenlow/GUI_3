@@ -26,24 +26,62 @@ namespace GUI_3
     public sealed partial class MainPage : Page
     {
         public QuestionViewModel Question { get; set; }
+        public QuestionBankViewModel QuestionBank { get; set; }
         public QuizViewModel Quiz { get; set; }
+        public AnswerViewModel Answer1 { get; set; }
+        public AnswerViewModel Answer2 { get; set; }
+        public AnswerViewModel Answer3 { get; set; }
+        public AnswerViewModel Answer4 { get; set; }
+        private int selecetedAnswer;
         public MainPage()
         {
             this.InitializeComponent(); 
-            Question = new QuestionViewModel(new Question(" "," "," "," "," ",0));
-            Quiz = new QuizViewModel(new Quiz("Test"));
+            Question = new QuestionViewModel(new Question(" ",new Answer(""), new Answer(""), new Answer(""), new Answer(""), 0));
+            QuestionBank = new QuestionBankViewModel(new QuestionBank());
+            Quiz = new QuizViewModel(new Quiz(""));
+            Answer1 = new AnswerViewModel(new Answer(""));
+            Answer2 = new AnswerViewModel(new Answer(""));
+            Answer3 = new AnswerViewModel(new Answer(""));
+            Answer4 = new AnswerViewModel(new Answer(""));
+            selecetedAnswer = 1;
         }
 
         private void addQuizButton_Click(object sender, RoutedEventArgs e)
         {
             //NEED to add for changing the answers
-            Quiz.Questions.Add(new QuestionViewModel(new Question(Question.Text, "something", "something2", "something3", "something4", 0)));
+            QuestionBank.Questions.Add(new QuestionViewModel(new Question(Question.Text, new Answer(Answer1.Text), new Answer(Answer2.Text), new Answer(Answer3.Text), new Answer(Answer4.Text), selecetedAnswer-1)));
         }
 
         private void QuestionListView_Tapped(object sender, TappedRoutedEventArgs e)
         {
-           Debug.WriteLine(Quiz.Questions[this.QuestionListView.SelectedIndex].Answers[0].Text);
-            this.AnswersListView.ItemsSource = Quiz.Questions[this.QuestionListView.SelectedIndex].Answers;
+           //Debug.WriteLine(QuizBank.Questions[this.QuestionListView.SelectedIndex].Answers[0].Text);
+            this.AnswersListView.ItemsSource = QuestionBank.Questions[this.QuestionListView.SelectedIndex].Answers;
+            int correctAnswer = 0;
+            foreach(AnswerViewModel a in QuestionBank.Questions[this.QuestionListView.SelectedIndex].Answers)
+            {
+                if (a.isCorrect) { correctAnswer = QuestionBank.Questions[this.QuestionListView.SelectedIndex].Answers.IndexOf(a); }
+            }
+            char c = (char)('A' + correctAnswer);
+            this.ShowAnswer.Text = c.ToString();
+        }
+
+        private void A1_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton rb = sender as RadioButton;
+            if (rb != null)
+            {
+                selecetedAnswer = Int32.Parse(rb.Tag.ToString());
+            }
+        }
+
+        private void addToQuizButton_Click(object sender, RoutedEventArgs e)
+        {
+            Quiz.Questions.Add(QuestionBank.Questions[this.QuestionListView.SelectedIndex]);
+        }
+
+        private void takeQuizButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
