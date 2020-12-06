@@ -18,5 +18,6 @@ This is an education app which allows you to build a quiz from a list of quiz qu
     - 
     
 ## Left to Do
-    - [X] Impliment SQLITE
-    - [ ] 
+    - SQLITE
+    - 3 Pages
+        - Maybe? Build a take quiz page
