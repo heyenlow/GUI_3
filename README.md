@@ -13,3 +13,10 @@ This is an education app which allows you to build a quiz from a list of quiz qu
 ## The Percentage of Work
 ### Derrick Courtney: 50%
 ### Konrad Heyen: 50%
+
+## Known Bugs
+    - 
+    
+## Left to Do
+    - [X] Impliment SQLITE
+    - [ ] 
