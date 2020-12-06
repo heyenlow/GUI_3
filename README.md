@@ -7,7 +7,8 @@ This is an education app which allows you to build a quiz from a list of quiz qu
 ### Derrick Courtney
     - 
 ### Konrad Heyen:
-    - MVVM and Mainpage
+    - MVVM
+    - Mainpage
 
 ## The Percentage of Work
 ### Derrick Courtney: 50%
