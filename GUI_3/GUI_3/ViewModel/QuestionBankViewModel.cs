@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,8 @@ namespace GUI_3.ViewModel
                 newQ.PropertyChanged += OnPropertyChanged;
                 Questions.Add(newQ);
             }
+
+            Questions.CollectionChanged += Questions_CollectionChanged;
         }
 
         private void OnPropertyChanged(string property)
@@ -36,6 +39,22 @@ namespace GUI_3.ViewModel
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             PropertyChanged?.Invoke(sender, e);
+        }
+
+        private void Questions_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                // Add new movie to database
+                var questionViewModel = e.NewItems[0] as QuestionViewModel;
+                questionViewModel.SaveNew();
+            }
+            else if (e.Action == NotifyCollectionChangedAction.Remove)
+            {
+                // Delete movie from database
+                var questionViewModel = e.OldItems[0] as QuestionViewModel;
+                questionViewModel.Delete();
+            }
         }
     }
 }

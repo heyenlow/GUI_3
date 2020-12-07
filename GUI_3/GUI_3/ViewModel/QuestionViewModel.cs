@@ -46,5 +46,16 @@ namespace GUI_3.ViewModel
         {
             PropertyChanged?.Invoke(sender, e);
         }
+
+        public void SaveNew()
+        {
+            question.AddToDb();
+        }
+
+        public void Delete()
+        {
+            question.RemoveFromDb();
+        }
+
     }
 }

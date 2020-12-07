@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GUI_3.DataAccess;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -30,6 +31,8 @@ namespace GUI_3
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            SqliteDB.InitializeDatabase();
         }
 
         /// <summary>
