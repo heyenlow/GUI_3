@@ -81,7 +81,7 @@ namespace GUI_3
 
         private void takeQuizButton_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Frame.Navigate(typeof(QuizPage), Quiz);
         }
     }
 }

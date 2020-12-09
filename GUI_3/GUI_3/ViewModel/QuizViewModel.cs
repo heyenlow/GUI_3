@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -45,6 +47,30 @@ namespace GUI_3.ViewModel
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             PropertyChanged?.Invoke(sender, e);
+        }
+
+        public QuizViewModel shuffled()
+        {
+            QuizViewModel quizViewModel = new QuizViewModel(quiz);
+            quizViewModel.Questions = new ObservableCollection<QuestionViewModel>(Questions);
+
+            // Fisher-Yates shuffle
+            // Code courtesy of u/grenade on StackOverflow (https://stackoverflow.com/questions/273313/randomize-a-listt)
+            RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider();
+            int n = quizViewModel.Questions.Count;
+            while (n > 1)
+            {
+                byte[] box = new byte[1];
+                do provider.GetBytes(box);
+                while (!(box[0] < n * (Byte.MaxValue / n)));
+                int k = (box[0] % n);
+                n--;
+                QuestionViewModel value = quizViewModel.Questions[k];
+                quizViewModel.Questions[k] = quizViewModel.Questions[n];
+                quizViewModel.Questions[n] = value;
+            }
+
+            return quizViewModel;
         }
 
     }
