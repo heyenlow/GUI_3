@@ -5,7 +5,8 @@ This is an education app which allows you to build a quiz from a list of quiz qu
 
 ## Contribution
 ### Derrick Courtney
-    - 
+    - SQLITE
+    - Quiz page, Result Page, About Page
 ### Konrad Heyen:
     - MVVM
     - Mainpage
@@ -15,10 +16,4 @@ This is an education app which allows you to build a quiz from a list of quiz qu
 ### Konrad Heyen: 50%
 
 ## Known Bugs
-    - 
-    
-## Left to Do
-    - SQLITE
-    - 3 Pages
-        - Maybe? Build a take quiz page
-    - Resize
+    - Not really a bug, but the distinction between the View and the ViewModel on the QuizPage and QuizAttemptViewModel is a little foggy due to cross-thread exceptions
