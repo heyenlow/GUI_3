@@ -50,7 +50,7 @@
             <RadioButton x:Name="A4" Tag="4" GroupName="SelectedAnswer" Checked="A1_Checked" Grid.Row="5" Grid.Column="0" Margin="10,0,0,0"/>
             <TextBox x:Name="textAnswer4" Text="{x:Bind Answer4.Text, Mode=TwoWay}" HorizontalAlignment="Stretch" Grid.Row="5" Grid.Column="1" Margin="0,0,10,0" VerticalAlignment="Center"/>
             <TextBlock x:Name="errorCreateQuestion" Visibility="Collapsed" Text="Fill in all blanks." Foreground="Red" HorizontalAlignment="Right" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" Margin="0,0,130,0"/>
-            <Button x:Name="addQuizButton" HorizontalAlignment="Right" Content="Add Question" Click="addQuizButton_Click" Margin="10" Grid.Row="6" Grid.Column="1"/>
+            <Button x:Name="addQuizButton" BorderBrush="CornflowerBlue" HorizontalAlignment="Right" Content="Add Question" Click="addQuizButton_Click" Margin="10" Grid.Row="6" Grid.Column="1"/>
         </Grid>
 
         <Grid BorderBrush="Tomato" BorderThickness="5" Margin="30,15,15,30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1">
@@ -93,7 +93,7 @@
 
             <TextBlock x:Name="ShowAnswer" Text="" FontSize="70" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2" Margin="10,0,20,0"/>
             <TextBlock x:Name="errorAddQuestion" Visibility="Collapsed" Text="Please select one question." Foreground="Red" HorizontalAlignment="Right" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="0,0,90,0"/>
-            <Button x:Name="addToQuizButton" Content="Add To Quiz" Click="addToQuizButton_Click"  Margin="10" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Right"/>
+            <Button x:Name="addToQuizButton" BorderBrush="Tomato" Content="Add To Quiz" Click="addToQuizButton_Click"  Margin="10" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Right"/>
         </Grid>
 
         <Grid BorderBrush="MediumSeaGreen" BorderThickness="5" Margin="15,30,30,15" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1">
@@ -122,10 +122,10 @@
             </ListView>
 
             <TextBlock x:Name="errorTakeQuiz" Visibility="Collapsed" Text="Quiz must have at least one question." Foreground="Red" HorizontalAlignment="Right" Grid.Row="3" VerticalAlignment="Center" Margin="0,0,100,0"/>
-            <Button x:Name="takeQuizButton" Content="Take Quiz" Click="takeQuizButton_Click"  Margin="10" Grid.Row="3" HorizontalAlignment="Right"/>
+            <Button x:Name="takeQuizButton" BorderBrush="MediumSeaGreen" Content="Take Quiz" Click="takeQuizButton_Click"  Margin="10" Grid.Row="3" HorizontalAlignment="Right"/>
         </Grid>
 
-        <Button Content="About" Click="aboutButton_Click" Margin="40" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="1"/>
+        <Button Content="About" BorderBrush="Yellow" Click="aboutButton_Click" FontSize="30" Margin="0,0,40,40" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="1" Height="48" Width="151"/>
 
     </Grid>
 
