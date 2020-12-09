@@ -1,7 +1,7 @@
 # GUI_3
 
 ## Brief summary
-This is an education app which allows you to build a quiz from a list of quiz questions. Or you can add a new question to the list of quiz questions.
+This is an education app which allows you to build a quiz from a list of quiz questions. You can also add a new question to the list of quiz questions.
 
 ## Contribution
 ### Derrick Courtney
