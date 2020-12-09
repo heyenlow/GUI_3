@@ -48,21 +48,36 @@ namespace GUI_3
 
         private void addQuizButton_Click(object sender, RoutedEventArgs e)
         {
-            //NEED to add for changing the answers
-            QuestionBank.Questions.Add(new QuestionViewModel(new Question(Question.Text, new Answer(Answer1.Text), new Answer(Answer2.Text), new Answer(Answer3.Text), new Answer(Answer4.Text), selecetedAnswer-1)));
+            if (Question.Text != "" && Answer1.Text != "" && Answer2.Text != "" && Answer3.Text != "" && Answer4.Text != "")
+            {
+                this.errorCreateQuestion.Visibility = Visibility.Collapsed;
+                QuestionBank.Questions.Add(new QuestionViewModel(new Question(Question.Text, new Answer(Answer1.Text), new Answer(Answer2.Text), new Answer(Answer3.Text), new Answer(Answer4.Text), selecetedAnswer - 1)));
+            }
+            else
+            {
+                this.errorCreateQuestion.Visibility = Visibility.Visible;
+            }
         }
 
         private void QuestionListView_Tapped(object sender, TappedRoutedEventArgs e)
         {
-           //Debug.WriteLine(QuizBank.Questions[this.QuestionListView.SelectedIndex].Answers[0].Text);
-            this.AnswersListView.ItemsSource = QuestionBank.Questions[this.QuestionListView.SelectedIndex].Answers;
-            int correctAnswer = 0;
-            foreach(AnswerViewModel a in QuestionBank.Questions[this.QuestionListView.SelectedIndex].Answers)
+            //Debug.WriteLine(QuizBank.Questions[this.QuestionListView.SelectedIndex].Answers[0].Text);
+            if (this.QuestionListView.SelectedIndex >= 0 && this.QuestionListView.SelectedIndex < QuestionBank.Questions.Count())
             {
-                if (a.isCorrect) { correctAnswer = QuestionBank.Questions[this.QuestionListView.SelectedIndex].Answers.IndexOf(a); }
+                this.errorAddQuestion.Visibility = Visibility.Collapsed;
+                this.AnswersListView.ItemsSource = QuestionBank.Questions[this.QuestionListView.SelectedIndex].Answers;
+                int correctAnswer = 0;
+                foreach (AnswerViewModel a in QuestionBank.Questions[this.QuestionListView.SelectedIndex].Answers)
+                {
+                    if (a.isCorrect) { correctAnswer = QuestionBank.Questions[this.QuestionListView.SelectedIndex].Answers.IndexOf(a); }
+                }
+                char c = (char)('A' + correctAnswer);
+                this.ShowAnswer.Text = c.ToString();
             }
-            char c = (char)('A' + correctAnswer);
-            this.ShowAnswer.Text = c.ToString();
+            else
+            {
+                this.errorAddQuestion.Visibility = Visibility.Visible;
+            }
         }
 
         private void A1_Checked(object sender, RoutedEventArgs e)
@@ -76,12 +91,27 @@ namespace GUI_3
 
         private void addToQuizButton_Click(object sender, RoutedEventArgs e)
         {
-            Quiz.Questions.Add(QuestionBank.Questions[this.QuestionListView.SelectedIndex]);
+            if (this.QuestionListView.SelectedIndex >= 0 && this.QuestionListView.SelectedIndex < QuestionBank.Questions.Count()) {
+                this.errorAddQuestion.Visibility = Visibility.Collapsed;
+                Quiz.Questions.Add(QuestionBank.Questions[this.QuestionListView.SelectedIndex]);
+            }
+            else
+            {
+                this.errorAddQuestion.Visibility = Visibility.Visible;
+            }
         }
 
         private void takeQuizButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(QuizPage), Quiz);
+            if (Quiz.Questions.Count > 0)
+            {
+                this.errorTakeQuiz.Visibility = Visibility.Collapsed;
+                this.Frame.Navigate(typeof(QuizPage), Quiz);
+            }
+            else
+            {
+                this.errorTakeQuiz.Visibility = Visibility.Visible;
+            }
         }
 
         private void aboutButton_Click(object sender, RoutedEventArgs e)
