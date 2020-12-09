@@ -83,5 +83,10 @@ namespace GUI_3
         {
             this.Frame.Navigate(typeof(QuizPage), Quiz);
         }
+
+        private void aboutButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(AboutPage));
+        }
     }
 }

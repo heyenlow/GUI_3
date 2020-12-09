@@ -42,7 +42,7 @@
 
         <TextBlock Text="{x:Bind ResultMessage, Mode=OneWay}" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Grid.Row="5"/>
 
-        <Button x:Name="submitButton" HorizontalAlignment="Right" Content="Submit" Click="submitButton_Click" Margin="10" Grid.Row="6"/>
+        <Button x:Name="submitButton" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Submit" Click="submitButton_Click" Margin="10" Grid.Row="6"/>
 
     </Grid>
 </Page>
